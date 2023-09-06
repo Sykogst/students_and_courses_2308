@@ -11,14 +11,24 @@ RSpec.describe Course do
 
   describe '#initialize' do
     it 'exists' do
-      expect(@course).to be be_instance_of(Course)
+      expect(@course).to be_instance_of(Course)
     end
 
     it 'has attributes' do
-      expect(@course.name).to eq('Calclus')
+      expect(@course.name).to eq('Calculus')
       expect(@course.capacity).to eq(2)
       expect(@course.students).to eq([])
       expect(@course.full?).to be false
+    end
+  end
+
+  describe '#enroll?' do
+    it 'can add students to list' do
+      expect(@course.students).to eq([])
+      @course.enroll(@student1)
+      expect(@course.students).to eq([@student1])
+      @course.enroll(@student2)
+      expect(@course.students).to eq([@student1, @student2])
     end
   end
 
