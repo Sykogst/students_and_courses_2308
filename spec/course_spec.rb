@@ -36,6 +36,7 @@ RSpec.describe Course do
     it 'returns status of full attribute' do
       expect(@course.full?).to be false
       @course.enroll(@student1)
+      expect(@course.full?).to be false
       @course.enroll(@student2)
       expect(@course.full?).to be true
     end
