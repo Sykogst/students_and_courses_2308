@@ -38,7 +38,20 @@ RSpec.describe Gradebook do
   end
 
   describe '#list_all_students' do
+    it 'lists students enrolled in each class' do
+      @course1.enroll(@student1)
+      @course1.enroll(@student2)
+      @gradebook.add_course(@course1)
 
+      @course2.enroll(@student1)
+      @course2.enroll(@student2)
+      @gradebook.add_course(@course2)
+
+      @course3.enroll(@student3)
+      @gradebook.add_course(@course3)
+      
+      expect(@gradebook.list_all_students).to eq({'Calculus' => [@student1, @student2], 'Biology' => [@student1], 'History' => [@student3]})
+    end
   end
 
   describe '#students_below' do
